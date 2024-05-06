@@ -91,8 +91,8 @@ inline void fontsload(string name) {
 
 inline void putspace(short i, short j, HANDLE handle, short x, short y) {
 	m.lock();
-	SetConsoleCursorPosition(handle, (COORD){(short)(i*2+x), (short)(j+y)});
-	printf("  ");
+	SetConsoleCursorPosition(handle, (COORD){(short)(i*3+x), (short)(j+y)});
+	printf("   ");
 	m.unlock();
 }
 
@@ -167,23 +167,23 @@ namespace WinCon {
 		int lyy = g.h;
 		for (int i = 0; i < len; i++) {
 			if (s[i] == L'`') {
-				x -= g.w*4+wid*2; if (x+wi*2 > 1480) x = 20, y += (double)yy*1.5;
+				x -= g.w*6+wid*2; if (x+wi*3 > 1480) x = 20, y += (double)yy*1.5;
 			} else if (s[i] == L'~') {
 				x = 20, y += (double)yy*1.5;
 			} else if (s[i] == L'\''||s[i] == L'\"'||s[i] == L'^') {
 				Showc(F_SIZE, s[i], x, y - yy);
-		    	x += g.w*2+wid; if (x+wi*2 > 1480) x = 20, y += (double)yy*1.5;
+		    	x += g.w*2+wid; if (x+wi*3 > 1480) x = 20, y += (double)yy*1.5;
 			} else if (s[i] == L' ') {
-				x += F_SIZE*0.8+wid; if (x+wi*2 > 1920) x = 20, y += (double)yy*1.5;
+				x += F_SIZE*0.8*1.5+wid; if (x+wi*3 > 1920) x = 20, y += (double)yy*1.5;
 			} else if (s[i] == L'j') {
 				font_ft_get_glyph(&font_info, s[i], F_SIZE, &g); Showc(F_SIZE, s[i], x, y - lyy);
-		    	x += g.w*2+wid; if (x+wi*2 > 1480) x = 20, y += (double)yy*1.5;
+		    	x += g.w*3+wid; if (x+wi*3 > 1480) x = 20, y += (double)yy*1.5;
 			} else if (s[i] == L'g'||s[i] == L'y'||s[i] == 'p' || s[i] == 'q') {
 				font_ft_get_glyph(&font_info, s[i], F_SIZE, &g); Showc(F_SIZE, s[i], x, y - ly);
-		    	x += g.w*2+wid; if (x+wi*2 > 1480) x = 20, y += (double)yy*1.5;
+		    	x += g.w*3+wid; if (x+wi*3 > 1480) x = 20, y += (double)yy*1.5;
 			} else {
 				font_ft_get_glyph(&font_info, s[i], F_SIZE, &g); Showc(F_SIZE, s[i], x, y - g.h);
-			    x += g.w*2+wid; if (x+wi*2 > 1480) x = 20, y += (double)yy*1.5;
+			    x += g.w*3+wid; if (x+wi*3 > 1480) x = 20, y += (double)yy*1.5;
 			}
 			if (y > 250) system("color F0"), y = 20+f_size;
 		}
